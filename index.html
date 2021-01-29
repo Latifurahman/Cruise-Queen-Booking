@@ -60,7 +60,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="first-class-amount" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="first-class-amount" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <button id="first-class-plus">+</button>
@@ -71,7 +71,7 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input id="economy-class-amount" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="economy-class-amount" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <button id="economy-class-plus">+</button>
@@ -117,25 +117,46 @@
         // first class increase amount part start -------------------
 
         document.getElementById("first-class-plus").addEventListener("click", function () {
-            const firstClassAmount = document.getElementById("first-class-amount");
-            const firstClassNumber = parseInt(firstClassAmount.value);
-            const firstClassNewAmount = firstClassNumber + 1;
-            firstClassAmount.value = firstClassNewAmount;
+            // const firstClassAmount = document.getElementById("first-class-amount");
+            // const firstClassNumber = parseInt(firstClassAmount.value);
+            // const firstClassNewAmount = firstClassNumber + 1;
+            // firstClassAmount.value = firstClassNewAmount;
             // const subTotal = firstClassNewAmount * 150;
             // document.getElementById("subtotal").innerText = "$" + subTotal;
+            cruiseFirstTicketQuantity(true);
         })
+
+
+        function cruiseFirstTicketQuantity(isIncrease) {
+            const firstClassAmount = document.getElementById("first-class-amount");
+            const firstClassNumber = parseInt(firstClassAmount.value);
+            // const firstClassNewAmount = firstClassNumber + 1;
+            let firstClassNewAmount = firstClassNumber;
+            if (isIncrease == true) {
+                firstClassNewAmount = firstClassNumber + 1;
+            }
+            if (isIncrease == false && firstClassNumber > 0) {
+                firstClassNewAmount = firstClassNumber - 1;
+            }
+            firstClassAmount.value = firstClassNewAmount;
+            // const subTotal = firstClassNewAmount * 150;
+        }
+
+
+
 
         // first class increase amount part end ----------------------
 
         // first class decrease amount part start --------------------
 
         document.getElementById("first-class-minus").addEventListener("click", function () {
-            const firstClassAmount = document.getElementById("first-class-amount");
-            const firstClassNumber = parseInt(firstClassAmount.value);
-            const firstClassNewAmount = firstClassNumber - 1;
-            firstClassAmount.value = firstClassNewAmount;
+            // const firstClassAmount = document.getElementById("first-class-amount");
+            // const firstClassNumber = parseInt(firstClassAmount.value);
+            // const firstClassNewAmount = firstClassNumber - 1;
+            // firstClassAmount.value = firstClassNewAmount;
             // const subTotal = firstClassNewAmount * 150;
             // document.getElementById("subtotal").innerText = "$" + subTotal;
+            cruiseFirstTicketQuantity(false);
         })
 
         // first class decrease amount part end ----------------------
@@ -147,31 +168,50 @@
         // economy class increase amount part start ------------------
 
         document.getElementById("economy-class-plus").addEventListener("click", function () {
-            const economyClassAmount = document.getElementById("economy-class-amount");
-            const economyClassNumber = parseInt(economyClassAmount.value);
-            const economyClassNewAmount = economyClassNumber + 1;
-            economyClassAmount.value = economyClassNewAmount;
+            // const economyClassAmount = document.getElementById("economy-class-amount");
+            // const economyClassNumber = parseInt(economyClassAmount.value);
+            // const economyClassNewAmount = economyClassNumber + 1;
+            // economyClassAmount.value = economyClassNewAmount;
             // const subTotal = economyClassNewAmount * 100;
             // document.getElementById("subtotal").innerText = "$" + subTotal;
+            cruiseEconomyTicketQuantity(true);
         })
 
         // economy class increase amount part end --------------------
 
+        function cruiseEconomyTicketQuantity(isIncrease) {
+            const economyClassAmount = document.getElementById("economy-class-amount");
+            const economyClassNumber = parseInt(economyClassAmount.value);
+            // const economyClassNewAmount = economyClassNumber - 1;
+            let economyClassNewAmount = economyClassNumber;
+            if (isIncrease == true) {
+                economyClassNewAmount = economyClassNumber + 1;
+            }
+            if (isIncrease == false && economyClassNumber > 0) {
+                economyClassNewAmount = economyClassNumber - 1;
+            }
+            economyClassAmount.value = economyClassNewAmount;
+        }
+
+
+
         // economy class decrease amount part start ------------------
 
         document.getElementById("economy-class-minus").addEventListener("click", function () {
-            const economyClassAmount = document.getElementById("economy-class-amount");
-            const economyClassNumber = parseInt(economyClassAmount.value);
-            const economyClassNewAmount = economyClassNumber - 1;
-            economyClassAmount.value = economyClassNewAmount;
+            // const economyClassAmount = document.getElementById("economy-class-amount");
+            // const economyClassNumber = parseInt(economyClassAmount.value);
+            // const economyClassNewAmount = economyClassNumber - 1;
+            // economyClassAmount.value = economyClassNewAmount;
             // const subTotal = economyClassNewAmount * 100;
             // document.getElementById("subtotal").innerText = "$" + subTotal;
+            cruiseEconomyTicketQuantity(false);
         })
 
         // subtotal part start **************************
 
         function calculateSubtotal() {
-            document.getElementById()
+            const total = document.getElementById("first-class-amount");
+            const input = parseInt(total);
         }
 
 
