@@ -13,6 +13,8 @@ body {
     background-position: center center;
     background-attachment: scroll;
     background-size: cover;
+    min-height: 500px;
+
 }
 
 nav {
@@ -68,7 +70,7 @@ a.active {
 }
 
 .booking-form {
-    background-color: #fff;
+    background-color: rgba(176, 209, 252, 0.9);
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 5px;
@@ -147,9 +149,28 @@ a.active {
     color: #fff;
     font-weight: 500;
     background-color: #E33741;
+    cursor: pointer;
 }
 
 .amount {
     display: flex;
     justify-content: space-between;
+}
+
+#confirmation-message {
+    margin: 200px 500px;
+    display: none;
+}
+
+#confirmation-message h1 {
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgba(51, 209, 122, 0.8);
+    font-size: 80px;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
