@@ -63,8 +63,8 @@
                     <input id="first-class-amount" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button id="first-class-plus">+</button>
-                    <button id="first-class-minus">-</button>
+                    <button onclick="cruiseTicketQuantity('first-class', true)">+</button>
+                    <button onclick="cruiseTicketQuantity('first-class', false)">-</button>
                 </div>
             </div>
 
@@ -74,8 +74,8 @@
                     <input id="economy-class-amount" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button id="economy-class-plus">+</button>
-                    <button id="economy-class-minus">-</button>
+                    <button onclick="cruiseTicketQuantity('economy-class', + true)">+</button>
+                    <button onclick="cruiseTicketQuantity('economy-class', + false)">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -84,7 +84,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id="subtotal">$500</p>
+                        <p id="sub-total">$500</p>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="tax-amount">$50</p>
                     </div>
                 </div>
                 <hr>
@@ -102,7 +102,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p id="total">$550</p>
                     </div>
                 </div>
             </div>
@@ -116,48 +116,80 @@
 
         // first class increase amount part start -------------------
 
-        document.getElementById("first-class-plus").addEventListener("click", function () {
-            // const firstClassAmount = document.getElementById("first-class-amount");
-            // const firstClassNumber = parseInt(firstClassAmount.value);
-            // const firstClassNewAmount = firstClassNumber + 1;
-            // firstClassAmount.value = firstClassNewAmount;
-            // const subTotal = firstClassNewAmount * 150;
-            // document.getElementById("subtotal").innerText = "$" + subTotal;
-            cruiseFirstTicketQuantity(true);
-        })
+        // document.getElementById("first-class-plus").addEventListener("click", function () {
+        //     // const firstClassAmount = document.getElementById("first-class-amount");
+        //     // const firstClassNumber = parseInt(firstClassAmount.value);
+        //     // const firstClassNewAmount = firstClassNumber + 1;
+        //     // firstClassAmount.value = firstClassNewAmount;
+        //     // const subTotal = firstClassNewAmount * 150;
+        //     // document.getElementById("subtotal").innerText = "$" + subTotal;
+        //     // cruiseFirstTicketQuantity(true);
+        // })
 
 
-        function cruiseFirstTicketQuantity(isIncrease) {
-            const firstClassAmount = document.getElementById("first-class-amount");
-            const firstClassNumber = parseInt(firstClassAmount.value);
+        // function cruiseFirstTicketQuantity(isIncrease) {
+        //     const firstClassAmount = document.getElementById("first-class-amount");
+        //     const firstClassNumber = parseInt(firstClassAmount.value);
+        //     // const firstClassNewAmount = firstClassNumber + 1;
+        //     let firstClassNewAmount = firstClassNumber;
+        //     if (isIncrease == true) {
+        //         firstClassNewAmount = firstClassNumber + 1;
+        //     }
+        //     if (isIncrease == false && firstClassNumber > 0) {
+        //         firstClassNewAmount = firstClassNumber - 1;
+        //     }
+        //     firstClassAmount.value = firstClassNewAmount;
+        //     // const subTotal = firstClassNewAmount * 150;
+        // }
+
+
+
+        function cruiseTicketQuantity(count, isIncrease) {
+            const cruiseTicketAmount = document.getElementById(count + "-amount");
+            const cruiseTicketNumber = parseInt(cruiseTicketAmount.value);
             // const firstClassNewAmount = firstClassNumber + 1;
-            let firstClassNewAmount = firstClassNumber;
+            let cruiseTicketNewAmount = cruiseTicketNumber;
             if (isIncrease == true) {
-                firstClassNewAmount = firstClassNumber + 1;
+                cruiseTicketNewAmount = cruiseTicketNumber + 1;
             }
-            if (isIncrease == false && firstClassNumber > 0) {
-                firstClassNewAmount = firstClassNumber - 1;
+            if (isIncrease == false && cruiseTicketNumber > 0) {
+                cruiseTicketNewAmount = cruiseTicketNumber - 1;
             }
-            firstClassAmount.value = firstClassNewAmount;
+            cruiseTicketAmount.value = cruiseTicketNewAmount;
             // const subTotal = firstClassNewAmount * 150;
+            calculateSubtotal();
         }
 
+        function calculateSubtotal() {
+            const firstClassInput = document.getElementById("first-class-amount");
+            const firstClass = parseInt(firstClassInput.value);
 
+            const economyClassInput = document.getElementById("economy-class-amount");
+            const economyClass = parseInt(economyClassInput.value);
 
+            const subTotal = firstClass * 150 + economyClass * 100;
+            document.getElementById("sub-total").innerText = "$" + subTotal;
 
+            const tax = subTotal * 0.1;
+            document.getElementById("tax-amount").innerText = "$" + tax;
+
+            const total = subTotal + tax;
+            document.getElementById("total").innerText = "$" + total;
+
+        }
         // first class increase amount part end ----------------------
 
         // first class decrease amount part start --------------------
 
-        document.getElementById("first-class-minus").addEventListener("click", function () {
-            // const firstClassAmount = document.getElementById("first-class-amount");
-            // const firstClassNumber = parseInt(firstClassAmount.value);
-            // const firstClassNewAmount = firstClassNumber - 1;
-            // firstClassAmount.value = firstClassNewAmount;
-            // const subTotal = firstClassNewAmount * 150;
-            // document.getElementById("subtotal").innerText = "$" + subTotal;
-            cruiseFirstTicketQuantity(false);
-        })
+        // document.getElementById("first-class-minus").addEventListener("click", function () {
+        //     // const firstClassAmount = document.getElementById("first-class-amount");
+        //     // const firstClassNumber = parseInt(firstClassAmount.value);
+        //     // const firstClassNewAmount = firstClassNumber - 1;
+        //     // firstClassAmount.value = firstClassNewAmount;
+        //     // const subTotal = firstClassNewAmount * 150;
+        //     // document.getElementById("subtotal").innerText = "$" + subTotal;
+        //     cruiseFirstTicketQuantity(false);
+        // })
 
         // first class decrease amount part end ----------------------
 
@@ -167,45 +199,45 @@
 
         // economy class increase amount part start ------------------
 
-        document.getElementById("economy-class-plus").addEventListener("click", function () {
-            // const economyClassAmount = document.getElementById("economy-class-amount");
-            // const economyClassNumber = parseInt(economyClassAmount.value);
-            // const economyClassNewAmount = economyClassNumber + 1;
-            // economyClassAmount.value = economyClassNewAmount;
-            // const subTotal = economyClassNewAmount * 100;
-            // document.getElementById("subtotal").innerText = "$" + subTotal;
-            cruiseEconomyTicketQuantity(true);
-        })
+        // document.getElementById("economy-class-plus").addEventListener("click", function () {
+        //     // const economyClassAmount = document.getElementById("economy-class-amount");
+        //     // const economyClassNumber = parseInt(economyClassAmount.value);
+        //     // const economyClassNewAmount = economyClassNumber + 1;
+        //     // economyClassAmount.value = economyClassNewAmount;
+        //     // const subTotal = economyClassNewAmount * 100;
+        //     // document.getElementById("subtotal").innerText = "$" + subTotal;
+        //     cruiseEconomyTicketQuantity(true);
+        // })
 
         // economy class increase amount part end --------------------
 
-        function cruiseEconomyTicketQuantity(isIncrease) {
-            const economyClassAmount = document.getElementById("economy-class-amount");
-            const economyClassNumber = parseInt(economyClassAmount.value);
-            // const economyClassNewAmount = economyClassNumber - 1;
-            let economyClassNewAmount = economyClassNumber;
-            if (isIncrease == true) {
-                economyClassNewAmount = economyClassNumber + 1;
-            }
-            if (isIncrease == false && economyClassNumber > 0) {
-                economyClassNewAmount = economyClassNumber - 1;
-            }
-            economyClassAmount.value = economyClassNewAmount;
-        }
+        // function cruiseEconomyTicketQuantity(isIncrease) {
+        //     const economyClassAmount = document.getElementById("economy-class-amount");
+        //     const economyClassNumber = parseInt(economyClassAmount.value);
+        //     // const economyClassNewAmount = economyClassNumber - 1;
+        //     let economyClassNewAmount = economyClassNumber;
+        //     if (isIncrease == true) {
+        //         economyClassNewAmount = economyClassNumber + 1;
+        //     }
+        //     if (isIncrease == false && economyClassNumber > 0) {
+        //         economyClassNewAmount = economyClassNumber - 1;
+        //     }
+        //     economyClassAmount.value = economyClassNewAmount;
+        // }
 
 
 
         // economy class decrease amount part start ------------------
 
-        document.getElementById("economy-class-minus").addEventListener("click", function () {
-            // const economyClassAmount = document.getElementById("economy-class-amount");
-            // const economyClassNumber = parseInt(economyClassAmount.value);
-            // const economyClassNewAmount = economyClassNumber - 1;
-            // economyClassAmount.value = economyClassNewAmount;
-            // const subTotal = economyClassNewAmount * 100;
-            // document.getElementById("subtotal").innerText = "$" + subTotal;
-            cruiseEconomyTicketQuantity(false);
-        })
+        // document.getElementById("economy-class-minus").addEventListener("click", function () {
+        //     // const economyClassAmount = document.getElementById("economy-class-amount");
+        //     // const economyClassNumber = parseInt(economyClassAmount.value);
+        //     // const economyClassNewAmount = economyClassNumber - 1;
+        //     // economyClassAmount.value = economyClassNewAmount;
+        //     // const subTotal = economyClassNewAmount * 100;
+        //     // document.getElementById("subtotal").innerText = "$" + subTotal;
+        //     cruiseEconomyTicketQuantity(false);
+        // })
 
         // subtotal part start **************************
 

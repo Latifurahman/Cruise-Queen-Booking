@@ -116,7 +116,8 @@ a.active {
 }
 
 .plus-minus-btn button {
-    color: #3352F2;
+    color: #fff;
+    background-color: #E33741;
     font-size: 18px;
     padding: 5px;
     margin: 18px 15px 0px 0px;
@@ -124,6 +125,11 @@ a.active {
     cursor: pointer;
     font-weight: 700;
     width: 30px;
+}
+
+.plus-minus-btn button:hover {
+    background-color: #fff;
+    color: blue;
 }
 
 .booking-form .inputs {
